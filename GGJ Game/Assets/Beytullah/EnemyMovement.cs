@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour {
 	GameObject targetPlayer;
 
 	public GameObject Player;
+	bool isStunned = false;
 
 
 	void Start () {
@@ -34,7 +35,8 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Update () {
 
-		Debug.Log (isOnTarget.ToString ());
+		if (isStunned)
+			return;
 
 		float dist = enemyAgent.remainingDistance;
 		if (isOnTarget == false) 
@@ -48,10 +50,10 @@ public class EnemyMovement : MonoBehaviour {
 
 		if(isOnTarget == true)
 		{	
-			Debug.Log ("IOT TRUE");
+			
 			if(Vector3.Distance(Player.transform.position, this.transform.position) > 2)
 			{
-				Debug.Log ("DISTANCE > 2");
+				
 				enemyAgent.Resume ();
 				enemyAgent.SetDestination (Player.transform.position);
 
@@ -100,4 +102,24 @@ public class EnemyMovement : MonoBehaviour {
 		//enemyAgent.SetDestination (targetPlayer.transform.position);
 		isOnTarget = true;
     }
+
+	public virtual void InitiateStun ()
+	{
+		Debug.Log ("Initiate Stun Called");
+		isStunned = true;
+		StartCoroutine (StunEffect ());
+	}
+
+	IEnumerator StunEffect()
+	{
+		enemyAgent.Stop ();
+		Debug.Log ("Is Stunned");
+		for(int i = 0; i<5; i++)
+		{
+			yield return new WaitForSeconds (1f);
+		}
+		enemyAgent.Resume ();
+		isStunned = false;
+	}
+
 }

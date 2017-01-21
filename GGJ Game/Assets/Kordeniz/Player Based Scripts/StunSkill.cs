@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StunSkill : MonoBehaviour {
 
+	int skillDamage = 10;
+
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate = 7f;

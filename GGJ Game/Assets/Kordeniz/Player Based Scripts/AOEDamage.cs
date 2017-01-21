@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AOEDamage : MonoBehaviour {
 
+	int skillDamage = 25;
+
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate = 7f;
