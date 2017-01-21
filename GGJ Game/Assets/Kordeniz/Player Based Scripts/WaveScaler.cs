@@ -25,7 +25,7 @@ public class WaveScaler : MonoBehaviour
 
 		for (int i = 0; i < 5; i++) 
 		{
-			gameObject.transform.localScale += new Vector3(0.01f,0.01f,0.01f) ;
+			gameObject.transform.localScale += new Vector3(0.5f,0.5f,0.5f) ;
 			yield return new WaitForSeconds (1f);
 
 		}
