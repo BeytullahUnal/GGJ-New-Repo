@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlobalCD : MonoBehaviour {
 
 	public float CD;
-	public float RealCD =7f;
+	public static float RealCD =7f;
 	public bool isCD;
 
 	// Use this for initialization
