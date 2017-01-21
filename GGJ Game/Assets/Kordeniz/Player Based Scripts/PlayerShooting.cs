@@ -32,7 +32,8 @@ public class PlayerShooting : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+		if (Input.GetKeyDown (KeyCode.Alpha1) && GCD.isCD==false) {
+			Debug.Log (GCD.isCD);
 			playerMovement.isCasting = true;
 			isSelected = true;
 		}

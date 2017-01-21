@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isCasting = false;
 	public GameObject aimPlane;
 
+	public Animation walkAnim;
+	bool isWalking = false;
+
 
 
 	void Start () {
@@ -29,8 +32,20 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update () {
 
+		if(navAgent.pathStatus != NavMeshPathStatus.PathComplete && walkAnim.isPlaying == false)
+		{
+			//isWalking = true;
+
+			walkAnim.Play ();
+		}
+		if(navAgent.pathStatus == NavMeshPathStatus.PathComplete)
+		{
+			walkAnim.Stop ();
+		}
+
 		if(isCasting == true)
 		{
+			walkAnim.Stop ();
 			navAgent.ResetPath ();
 			aimPlane.SetActive (true);
 		}

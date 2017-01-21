@@ -17,7 +17,7 @@ public class DamageDealer : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Enemy")
+		if(other.gameObject.tag == "Enemy")
 		{
 			Debug.Log (damage);
 			EnemyHP enemyHP = other.gameObject.GetComponent<EnemyHP> ();
