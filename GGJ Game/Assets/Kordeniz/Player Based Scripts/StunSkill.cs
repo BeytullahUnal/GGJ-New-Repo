@@ -11,18 +11,30 @@ public class StunSkill : MonoBehaviour {
 	public int looper;
 	public GlobalCD GCD;
 	// Use this for initialization
+
+	PlayerMovement playerMovement;
+	bool isSelected = false;
+
 	void Awake () 
 	{
 		GCD = gameObject.GetComponent<GlobalCD> ();
+		playerMovement = GetComponent<PlayerMovement> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.Alpha1))
+		if (Input.GetKeyDown (KeyCode.Alpha2))
 		{
-			StunAttack ();
+			playerMovement.isCasting = true;
+			isSelected = true;
 		} 
+		if (Input.GetMouseButtonDown(0) && isSelected == true) {
+			Debug.Log ("TRITNG");
+			StunAttack ();
+			playerMovement.isCasting = false;
+			isSelected = false;
+		}
 
 
 	}

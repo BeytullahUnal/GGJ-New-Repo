@@ -18,19 +18,27 @@ public class PlayerShooting : MonoBehaviour
 	public int looper;
 	public GlobalCD GCD;
 
+	PlayerMovement playerMovement;
+	bool isSelected = false;
 
 	void Awake()
 	{
 		GCD = gameObject.GetComponent<GlobalCD> ();
+		playerMovement = GetComponent<PlayerMovement> ();
 
 	}
 
 	void Update ()
 	{
-		if (Input.GetButton ("Fire1"))
-		{
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			playerMovement.isCasting = true;
+			isSelected = true;
+		}
+		if (Input.GetMouseButtonDown(0) && isSelected == true) {
+			Debug.Log ("TRITNG");
 			DamageAttack ();
-		} 
+
+		}
 
 
 	}
@@ -50,15 +58,14 @@ public class PlayerShooting : MonoBehaviour
 
 	IEnumerator Shoot() 
 	{
-
+		
 		for (int i = 0; i < 5; i++) 
 		{
 			Instantiate (shot,shotSpawn.position,shotSpawn.rotation);
 			yield return new WaitForSeconds (1f);
 
 		}
-
-
-
+		playerMovement.isCasting = false;
+		isSelected = false;
 	}
 }

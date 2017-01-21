@@ -18,10 +18,12 @@ public class AOEDamage : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetButton ("Fire2"))
-		{
-			CastAOE ();
-		} 
+		if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			
+
+				CastAOE ();
+
+		}
 	}
 
 	public void CastAOE()

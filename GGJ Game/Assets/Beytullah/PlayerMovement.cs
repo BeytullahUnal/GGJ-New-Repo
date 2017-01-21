@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject aimPlane;
 
 
+
 	void Start () {
 
 		navAgent = GetComponent<NavMeshAgent> ();
@@ -38,9 +39,9 @@ public class PlayerMovement : MonoBehaviour {
 			aimPlane.SetActive (false);
 		}
 		       
-		if (Input.GetMouseButton(1))
+		if (Input.GetMouseButton(1) && isCasting == false)
 		{	
-			isCasting = false;
+			//isCasting = false;
 
 
 			RaycastHit hit;
