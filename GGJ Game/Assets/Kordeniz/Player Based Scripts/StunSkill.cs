@@ -5,22 +5,24 @@ using UnityEngine;
 public class StunSkill : MonoBehaviour {
 
 	int skillDamage = 10;
-
 	public GameObject shot;
 	public Transform shotSpawn;
-	public float fireRate = 7f;
+	public float fireRate = 20f;
 	private float nextFire;
 	public int looper;
 	public GlobalCD GCD;
-	// Use this for initialization
-
 	PlayerMovement playerMovement;
 	bool isSelected = false;
+	AudioClip Stun;
+
+	AudioSource AU;
 
 	void Awake () 
 	{
 		GCD = gameObject.GetComponent<GlobalCD> ();
 		playerMovement = GetComponent<PlayerMovement> ();
+		AU = gameObject.GetComponent<AudioSource> ();
+		AU.clip = Stun;
 	}
 	
 	// Update is called once per frame
@@ -46,6 +48,7 @@ public class StunSkill : MonoBehaviour {
 		if (Time.time > nextFire && GCD.isCD==false) {
 			nextFire = Time.time + fireRate;
 			GCD.KaybettikBeyt ();
+			AU.Play ();
 			Instantiate (shot,shotSpawn.position,shotSpawn.rotation);
 		} 
 		else 

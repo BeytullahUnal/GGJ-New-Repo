@@ -11,9 +11,7 @@ public class HPUIHandle : MonoBehaviour {
 	// Use this for initialization
 	void Awake ()
 	{
-		HP1.color.a = 0;
-		HP2.color.a = 0;
-		HP3.color.a = 0;
+		
 	}
 	
 	// Update is called once per frame

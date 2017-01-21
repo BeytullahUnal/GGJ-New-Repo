@@ -18,13 +18,13 @@ public class StunScale : MonoBehaviour {
 	IEnumerator Scale() 
 	{
 
-		for (int i = 0; i < 5; i++) 
+		for (int i = 0; i < 4; i++) 
 		{
 			
 
 
 		}
-		gameObject.transform.localScale += new Vector3(0.09f,0.09f,0.09f) ;
+		gameObject.transform.localScale += new Vector3(0.1f,0.1f,0.1f) ;
 		yield return new WaitForSeconds (1f);
 		Destroy (gameObject);
 
