@@ -23,16 +23,20 @@ public class HPUIHandle : MonoBehaviour {
 	{
 		if (PH.currenthealth <= 75 && PH.currenthealth >= 40) 
 		{
-
+			HP1.color = new Color32(255, 255, 255, 0);
+			HP2.color = new Color32(255, 255, 255, 255);
 		}
 
-		if (PH.currenthealth < 40) {
-
+		if (PH.currenthealth < 40) 
+		{
+			HP2.color = new Color32(255, 255, 255, 0);
+			HP3.color = new Color32(255, 255, 255, 255);
 		} 
 
 		else 
 		{
-
+			HP2.color = new Color32(255, 255, 255, 0);
+			HP3.color = new Color32(255, 255, 255, 0);
 		}
 
 

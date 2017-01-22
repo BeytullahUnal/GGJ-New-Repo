@@ -20,7 +20,7 @@ public class HPUI : MonoBehaviour
 		for (x = 0; x < 10; x++) 
 		{
 			HPYellow.fillAmount += 0.1f;
-			yield return new WaitForSeconds (.04f);
+			yield return new WaitForSeconds (.06f);
 		}
 		HPYellow.fillAmount = 0;
 		yield return StartCoroutine (HPY1 ());
