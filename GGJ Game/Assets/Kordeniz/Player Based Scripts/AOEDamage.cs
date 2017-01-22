@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AOEDamage : MonoBehaviour {
 
-	int skillDamage = 25;
+	int skillDamage = 30;
 	public GameObject shot;
 	public Transform shotSpawn;
-	public float fireRate = 7f;
+	public float fireRate = 11f;
 	private float nextFire;
 	public GlobalCD GCD;
 	AudioSource AOESource;

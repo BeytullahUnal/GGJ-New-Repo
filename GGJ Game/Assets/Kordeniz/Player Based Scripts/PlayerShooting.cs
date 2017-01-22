@@ -11,7 +11,7 @@ public class Boundary
 public class PlayerShooting : MonoBehaviour
 {
 
-	int skillDamage = 10;
+	int skillDamage = 15;
 
 	public GameObject shot;
 	public Transform shotSpawn;

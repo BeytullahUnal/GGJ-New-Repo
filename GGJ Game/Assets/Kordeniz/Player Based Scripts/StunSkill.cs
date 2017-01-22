@@ -7,7 +7,7 @@ public class StunSkill : MonoBehaviour {
 	int skillDamage = 10;
 	public GameObject shot;
 	public Transform shotSpawn;
-	public float fireRate = 20f;
+	public float fireRate = 10f;
 	private float nextFire;
 	public int looper;
 	public GlobalCD GCD;

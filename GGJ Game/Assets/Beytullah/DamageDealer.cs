@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour {
 
-	public int damage = 10;
+	public int damage = 15;
 
 	void Start () {
 		Debug.Log ("my damage is: " + damage);

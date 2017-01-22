@@ -6,7 +6,7 @@ public class MeleeDamage : MonoBehaviour {
 
 	public GameObject player;
 
-	int damageAmount = 10;
+	//int damageAmount = 10;
 
 	float fireRate = 1f;
 	float nextFire;
@@ -27,7 +27,7 @@ public class MeleeDamage : MonoBehaviour {
 			if(Time.time > nextFire)
 			{
 				nextFire = Time.time + fireRate;
-
+				other.GetComponent<PlayerHealth> ().TakeDamage (5);
 			}
 
 		}
