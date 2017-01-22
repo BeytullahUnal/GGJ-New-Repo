@@ -23,6 +23,12 @@ public class DamageDealerAOE : MonoBehaviour {
 			EnemyHP enemyHP = other.gameObject.GetComponent<EnemyHP> ();
 			enemyHP.ReceiveDamage (damage);
 		}
+		if(other.transform.tag == "EchoEnemy")
+		{
+			Debug.Log (damage);
+			EnemyHP enemyHP = other.gameObject.GetComponent<EnemyHP> ();
+			enemyHP.ReceiveDamage (damage);
+		}
 	}
 
 }

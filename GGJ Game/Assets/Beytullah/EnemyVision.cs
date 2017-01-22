@@ -13,7 +13,7 @@ public class EnemyVision : MonoBehaviour {
 
 	void Start () {
 		enemyMovement = Enemy.GetComponent<EnemyMovement> ();
-		//enemyCombat = Enemy.GetComponent<EnemyCombat> ();
+
 	}
 	
 	// Update is called once per frame

@@ -23,6 +23,12 @@ public class StunEffect : MonoBehaviour {
 			EnemyMovement enemyMovement = other.gameObject.GetComponent<EnemyMovement> ();
 			enemyMovement.InitiateStun ();
 		}
+		if(other.transform.tag == "EchoEnemy")
+		{
+			Debug.Log ("Collision Detected");
+			EnemyEchoMovement enemyEchoMovement = other.gameObject.GetComponent<EnemyEchoMovement> ();
+			enemyEchoMovement.InitiateStun ();
+		}
 	}
 
 

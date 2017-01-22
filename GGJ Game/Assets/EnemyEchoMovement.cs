@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class EnemyMovement : MonoBehaviour {
 
-	NavMeshAgent enemyAgent;
+public class EnemyEchoMovement : MonoBehaviour {
+
+	NavMeshAgent enemyAgentEcho;
 
 	GameObject[] destinations;
 	Vector3 patrolDst;
@@ -13,35 +14,45 @@ public class EnemyMovement : MonoBehaviour {
 	int index;
 
 
-	public bool isOnTarget = false;
+	public static bool isOnTarget = false;
+
 	public static GameObject targetPlayer;
 
 
 	bool isStunned = false;
 
+	public GameObject echoCircle;
+	public GameObject aimObject;
+
 
 	void Start () {
-		enemyAgent = GetComponent<NavMeshAgent> ();
+
+		isOnTarget = false;
+
+		enemyAgentEcho = GetComponent<NavMeshAgent> ();
 		destinations = GameObject.FindGameObjectsWithTag ("Destination");
 		itemCount = destinations.Length;
 
 		Debug.Log ("Assigning Initial Destination");
 		index = Random.Range (0, itemCount);
 		patrolDst = destinations [index].transform.position;
-		enemyAgent.SetDestination (patrolDst);
-
+		enemyAgentEcho.SetDestination (patrolDst);
+		StartCoroutine (Echolocation ());
 	}
 
 
 	void Update () {
 
+		if(targetPlayer != null)
+		Debug.Log (targetPlayer.name);
+
 		if (isStunned)
 			return;
 
-		float dist = enemyAgent.remainingDistance;
+		float dist = enemyAgentEcho.remainingDistance;
 		if (isOnTarget == false) 
 		{
-			if (enemyAgent.remainingDistance == 0) 
+			if (enemyAgentEcho.remainingDistance == 0) 
 			{
 				Debug.Log ("Assign Attempt");		
 				AssignNewDestination ();
@@ -50,33 +61,23 @@ public class EnemyMovement : MonoBehaviour {
 
 		if(isOnTarget == true)
 		{	
-			
+
 			if(Vector3.Distance(targetPlayer.transform.position, this.transform.position) > 2)
 			{
-				
-				enemyAgent.Resume ();
-				enemyAgent.SetDestination (targetPlayer.transform.position);
+
+				enemyAgentEcho.Resume ();
+				enemyAgentEcho.SetDestination (targetPlayer.transform.position);
 
 			}
 			else
 			{
-				enemyAgent.Stop ();
+				enemyAgentEcho.Stop ();
 				Vector3 lookVector = new Vector3 (targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z);
 				transform.LookAt (lookVector);
 			}
-			if (dist != Mathf.Infinity && enemyAgent.remainingDistance >= 2) 
-			{
-				//enemyAgent.SetDestination (Player.transform.position);
-			}
-			if(enemyAgent.remainingDistance < 2)
-			{
-				//enemyAgent.ResetPath ();
-				//Vector3 lookVector = new Vector3 (Player.transform.position.x, transform.position.y, Player.transform.position.z);
-				//transform.LookAt (lookVector);
-			}
 
 		}
-		
+
 	}
 
 	void AssignNewDestination()
@@ -85,7 +86,7 @@ public class EnemyMovement : MonoBehaviour {
 
 		index = Random.Range (0, itemCount);
 		patrolDst = destinations [index].transform.position;
-		enemyAgent.SetDestination (patrolDst);
+		enemyAgentEcho.SetDestination (patrolDst);
 	}
 
 
@@ -93,14 +94,14 @@ public class EnemyMovement : MonoBehaviour {
 	public virtual void DisablePatrol()
 	{
 		Debug.Log ("Disable Patrol Called");
-		enemyAgent.ResetPath ();
+		enemyAgentEcho.ResetPath ();
 	}
-    public virtual void MoveToMelee(GameObject target)
-    {
+	public void MoveToMeleeEcho(GameObject target)
+	{
 		Debug.Log ("Move to Melee Called");
 		targetPlayer = target;
 		isOnTarget = true;
-    }
+	}
 
 	public virtual void InitiateStun ()
 	{
@@ -111,14 +112,29 @@ public class EnemyMovement : MonoBehaviour {
 
 	IEnumerator StunEffect()
 	{
-		enemyAgent.Stop ();
+		enemyAgentEcho.Stop ();
 		Debug.Log ("Is Stunned");
 		for(int i = 0; i<5; i++)
 		{
 			yield return new WaitForSeconds (1f);
 		}
-		enemyAgent.Resume ();
+		enemyAgentEcho.Resume ();
 		isStunned = false;
+	}
+
+
+	//
+	IEnumerator Echolocation ()
+	{
+		while(true)
+		{
+			yield return new WaitForSeconds (7f);
+			for (int k = 0; k < 4; k++) 
+			{
+				Instantiate (echoCircle, aimObject.transform.position, aimObject.transform.rotation);
+				yield return new WaitForSeconds (0.5f);
+			}
+		}
 	}
 
 }

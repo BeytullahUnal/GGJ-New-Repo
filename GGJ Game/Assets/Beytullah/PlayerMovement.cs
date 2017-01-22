@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			if(Input.GetMouseButton(1))
 			{
-				isCasting = false;
+				//isCasting = false;
 			}
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);

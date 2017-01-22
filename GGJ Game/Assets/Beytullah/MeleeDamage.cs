@@ -5,14 +5,14 @@ using UnityEngine;
 public class MeleeDamage : MonoBehaviour {
 
 	public GameObject player;
-	HPController hpController;
+
 	int damageAmount = 10;
 
 	float fireRate = 1f;
 	float nextFire;
 
 	void Start () {
-		hpController = player.GetComponent<HPController> ();
+		
 	}
 	
 
@@ -27,7 +27,7 @@ public class MeleeDamage : MonoBehaviour {
 			if(Time.time > nextFire)
 			{
 				nextFire = Time.time + fireRate;
-				hpController.changeHealth (damageAmount);
+
 			}
 
 		}
