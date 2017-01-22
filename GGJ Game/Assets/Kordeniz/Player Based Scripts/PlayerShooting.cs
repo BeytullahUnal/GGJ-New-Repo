@@ -27,12 +27,14 @@ public class PlayerShooting : MonoBehaviour
 	public GameObject soloAnimObj;
 	public GameObject walkAnimObj;
 	bool isAnimating = false;
-
+	public AudioClip Fire1;
+	public AudioClip Fire2;
+	AudioSource AS;
 	void Awake()
 	{
 		GCD = gameObject.GetComponent<GlobalCD> ();
 		playerMovement = GetComponent<PlayerMovement> ();
-
+		AS = GetComponent<AudioSource> ();
 	}
 
 	void Update ()
@@ -58,6 +60,16 @@ public class PlayerShooting : MonoBehaviour
 	public void DamageAttack()
 	{
 		if (Time.time > nextFire && GCD.isCD==false) {
+			int index = Random.Range (0, 1);
+			if(index==0)
+			{
+				AS.clip=Fire1;
+			}
+			if(index==1) 
+			{
+				AS.clip=Fire2;
+			}
+			AS.Play ();
 			nextFire = Time.time + fireRate;
 			GCD.KaybettikBeyt ();
 			StartCoroutine (Shoot ());
@@ -72,7 +84,7 @@ public class PlayerShooting : MonoBehaviour
 	{
 		walkAnimObj.SetActive (false);
 		isAnimating = true;
-		for (int i = 0; i < 5; i++) 
+		for (int i = 0; i < 4; i++) 
 		{
 			Instantiate (shot,shotSpawn.position,shotSpawn.rotation);
 			yield return new WaitForSeconds (1f);

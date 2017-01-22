@@ -13,16 +13,13 @@ public class StunSkill : MonoBehaviour {
 	public GlobalCD GCD;
 	PlayerMovement playerMovement;
 	bool isSelected = false;
-	AudioClip Stun;
-
-	AudioSource AU;
-
+	AudioSource StunSource;
+	public AudioClip Stun;
 	void Awake () 
 	{
 		GCD = gameObject.GetComponent<GlobalCD> ();
 		playerMovement = GetComponent<PlayerMovement> ();
-		AU = gameObject.GetComponent<AudioSource> ();
-		AU.clip = Stun;
+		StunSource = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +32,6 @@ public class StunSkill : MonoBehaviour {
 		} 
 		if (Input.GetMouseButtonDown(0) && isSelected == true) {
 			Debug.Log ("TRITNG");
-			AU.Play ();
 			StunAttack ();
 			playerMovement.isCasting = false;
 			isSelected = false;
@@ -47,6 +43,8 @@ public class StunSkill : MonoBehaviour {
 	public void StunAttack()
 	{
 		if (Time.time > nextFire && GCD.isCD==false) {
+			StunSource.clip = Stun;
+			StunSource.Play ();
 			nextFire = Time.time + fireRate;
 			GCD.KaybettikBeyt ();
 
