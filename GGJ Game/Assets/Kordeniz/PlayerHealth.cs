@@ -72,6 +72,6 @@ public class PlayerHealth : MonoBehaviour {
 
 	void Dead()
 	{
-		Destroy (gameObject);
+		Application.LoadLevel (0);
 	}
 }
