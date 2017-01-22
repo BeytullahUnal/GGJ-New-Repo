@@ -5,10 +5,11 @@ using UnityEngine;
 public class AudioHandler : MonoBehaviour {
 
 	AudioSource PlayerAudio; 
-
-	void Start () 
+	public AudioClip Aygaz;
+	public AudioClip Loop;
+	void Awake () 
 	{
-		
+		PlayerAudio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -16,4 +17,15 @@ public class AudioHandler : MonoBehaviour {
 	{
 		
 	}
+
+	IEnumerator Start()
+	{
+		PlayerAudio.Play ();
+		yield return new WaitForSeconds (PlayerAudio.clip.length);
+		PlayerAudio.clip = Loop;
+		PlayerAudio.loop = true;
+		PlayerAudio.volume += 0.3f;
+		PlayerAudio.Play ();
+	}
+
 }

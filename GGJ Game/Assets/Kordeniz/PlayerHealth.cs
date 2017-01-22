@@ -72,8 +72,6 @@ public class PlayerHealth : MonoBehaviour {
 
 	void Dead()
 	{
-		//close all behavior codes;
-		//dead pose
-		//dead sound
+		Destroy (gameObject);
 	}
 }

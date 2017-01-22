@@ -82,7 +82,7 @@ public class EnemyEchoMovement1 : MonoBehaviour {
 		float dist = enemyAgentEcho.remainingDistance;
 		if (isOnTarget == false) 
 		{
-			if (enemyAgentEcho.remainingDistance == 0) 
+			if (enemyAgentEcho.remainingDistance <= 4) 
 			{
 				Debug.Log ("Assign Attempt");		
 				AssignNewDestination ();
