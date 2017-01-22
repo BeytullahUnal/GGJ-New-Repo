@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EchoCircleFind : MonoBehaviour {
+public class EchoCircleFind4 : MonoBehaviour {
 
 	public GameObject Origin;
-	EnemyEchoMovement enemyEchoMovement;
+	EnemyEchoMovement4 enemyEchoMovement4;
 	GameObject target;
 
 	void Start () {
-		enemyEchoMovement = Origin.GetComponent<EnemyEchoMovement> ();
+		enemyEchoMovement4 = Origin.GetComponent<EnemyEchoMovement4> ();
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -24,8 +24,8 @@ public class EchoCircleFind : MonoBehaviour {
 		{
 			Debug.Log ("Echoed Target");
 			target = other.gameObject;
-			EnemyEchoMovement.isOnTarget = true;
-			EnemyEchoMovement.targetPlayer = target;
+			EnemyEchoMovement4.isOnTarget = true;
+			EnemyEchoMovement4.targetPlayer = target;
 		}
 	}
 }

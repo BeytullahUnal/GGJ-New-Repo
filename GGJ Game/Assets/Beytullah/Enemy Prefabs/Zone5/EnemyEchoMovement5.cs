@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyEchoMovement : MonoBehaviour {
+public class EnemyEchoMovement5 : MonoBehaviour {
 
 	NavMeshAgent enemyAgentEcho;
 
@@ -30,7 +30,37 @@ public class EnemyEchoMovement : MonoBehaviour {
 		isOnTarget = false;
 
 		enemyAgentEcho = GetComponent<NavMeshAgent> ();
-		destinations = GameObject.FindGameObjectsWithTag ("Destination");
+		//destinations = GameObject.FindGameObjectsWithTag ("Destination");
+		if(gameObject.name.Contains("Echo1"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone1");
+		}
+		if(gameObject.name.Contains("Echo2"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone2");
+		}
+		if(gameObject.name.Contains("Echo3"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone3");
+		}
+		if(gameObject.name.Contains("Echo4"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone4");
+		}
+		if(gameObject.name.Contains("Echo5"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone5");
+		}
+		if(gameObject.name.Contains("Echo6"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone6");
+		}
+		if(gameObject.name.Contains("Echo7"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone7");
+		}
+
+
 		itemCount = destinations.Length;
 
 		Debug.Log ("Assigning Initial Destination");
@@ -44,7 +74,7 @@ public class EnemyEchoMovement : MonoBehaviour {
 	void Update () {
 
 		if(targetPlayer != null)
-		Debug.Log (targetPlayer.name);
+			Debug.Log (targetPlayer.name);
 
 		if (isStunned)
 			return;

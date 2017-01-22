@@ -22,7 +22,38 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Start () {
 		enemyAgent = GetComponent<NavMeshAgent> ();
-		destinations = GameObject.FindGameObjectsWithTag ("Destination");
+		//destinations = GameObject.FindGameObjectsWithTag ("Destination");
+		if(gameObject.name.Contains("Standard1"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone1");
+		}
+		if(gameObject.name.Contains("Standard2"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone2");
+		}
+		if(gameObject.name.Contains("Standard3"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone3");
+		}
+		if(gameObject.name.Contains("Standard4"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone4");
+		}
+		if(gameObject.name.Contains("Standard5"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone5");
+		}
+		if(gameObject.name.Contains("Standard6"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone6");
+		}
+		if(gameObject.name.Contains("Standard7"))
+		{
+			destinations = GameObject.FindGameObjectsWithTag ("Zone7");
+		}
+
+
+
 		itemCount = destinations.Length;
 
 		Debug.Log ("Assigning Initial Destination");
