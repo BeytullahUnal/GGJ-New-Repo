@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public Animation walkAnim;
 	bool isWalking = false;
+	bool isAnimating = false;
 
 
 
@@ -32,20 +33,30 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update () {
 
-		if(navAgent.pathStatus != NavMeshPathStatus.PathComplete && walkAnim.isPlaying == false)
-		{
-			//isWalking = true;
 
-			walkAnim.Play ();
+		if(isWalking == true)
+		{			
+			walkAnim.Play();
 		}
-		if(navAgent.pathStatus == NavMeshPathStatus.PathComplete)
-		{
+		if(isWalking == false)
+		{			
 			walkAnim.Stop ();
+		}
+
+			
+		
+		if(navAgent.remainingDistance == 0)
+		{
+			isWalking = false;
+		}
+		else
+		{
+			isWalking = true;
 		}
 
 		if(isCasting == true)
 		{
-			walkAnim.Stop ();
+			isWalking = false;
 			navAgent.ResetPath ();
 			aimPlane.SetActive (true);
 		}
@@ -69,17 +80,17 @@ public class PlayerMovement : MonoBehaviour {
 				moveDirection = new Vector3(transitionDir.x, this.transform.position.y, transitionDir.z);
 
 				navAgent.SetDestination (moveDirection);
+				//isWalking = true;
 			}
 		}
-
-
-		if(Input.GetKey(KeyCode.Alpha1))
-		{
-			isCasting = true;
-		}
+			
 
 		if(isCasting == true)
 		{
+			if(Input.GetMouseButton(1))
+			{
+				isCasting = false;
+			}
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if(Physics.Raycast(ray, out hit))

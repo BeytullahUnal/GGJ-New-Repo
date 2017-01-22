@@ -35,6 +35,7 @@ public class StunSkill : MonoBehaviour {
 		} 
 		if (Input.GetMouseButtonDown(0) && isSelected == true) {
 			Debug.Log ("TRITNG");
+			AU.Play ();
 			StunAttack ();
 			playerMovement.isCasting = false;
 			isSelected = false;
@@ -48,7 +49,7 @@ public class StunSkill : MonoBehaviour {
 		if (Time.time > nextFire && GCD.isCD==false) {
 			nextFire = Time.time + fireRate;
 			GCD.KaybettikBeyt ();
-			AU.Play ();
+
 			Instantiate (shot,shotSpawn.position,shotSpawn.rotation);
 		} 
 		else 

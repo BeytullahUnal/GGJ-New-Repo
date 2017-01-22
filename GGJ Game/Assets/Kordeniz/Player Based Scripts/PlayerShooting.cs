@@ -23,6 +23,11 @@ public class PlayerShooting : MonoBehaviour
 	PlayerMovement playerMovement;
 	bool isSelected = false;
 
+	public Animation soloAnim;
+	public GameObject soloAnimObj;
+	public GameObject walkAnimObj;
+	bool isAnimating = false;
+
 	void Awake()
 	{
 		GCD = gameObject.GetComponent<GlobalCD> ();
@@ -32,6 +37,10 @@ public class PlayerShooting : MonoBehaviour
 
 	void Update ()
 	{
+		if (isAnimating == true) {
+			soloAnimObj.SetActive (true);
+			soloAnim.Play ();
+		}
 		if (Input.GetKeyDown (KeyCode.Alpha1) && GCD.isCD==false) {
 			Debug.Log (GCD.isCD);
 			playerMovement.isCasting = true;
@@ -61,13 +70,16 @@ public class PlayerShooting : MonoBehaviour
 
 	IEnumerator Shoot() 
 	{
-		
+		walkAnimObj.SetActive (false);
+		isAnimating = true;
 		for (int i = 0; i < 5; i++) 
 		{
 			Instantiate (shot,shotSpawn.position,shotSpawn.rotation);
 			yield return new WaitForSeconds (1f);
-
 		}
+		isAnimating = false;
+		soloAnimObj.SetActive (false);
+		walkAnimObj.SetActive (true);
 		playerMovement.isCasting = false;
 		isSelected = false;
 	}
